@@ -9,7 +9,7 @@
 * [Development](#development)
 * [Deployment](#deployment)
 * [Technologies](#technologies)
-* [Issues](#issues)
+* [Issues/Concerns](#issues)
 * [Validation](#validation)
 * [Browser Compatibility](#compatibility)
 
@@ -49,12 +49,23 @@
 - ADD RATIONALES AND FUNCTION
 - Gulp
 - Sass
-- Parse
+- Parse: used as backend and user account management.
 - ChartJS
 - jQuery
+- Quandl PERTH dataset used to provide metal bid/ask prices.
 
-## <a name="issues">Issues</a> [&#8593;](#toc)
+## <a name="issues">Issues/Concerns</a> [&#8593;](#toc)
 - Google+ OAuth client-side Parse is not easy. Firebase came with simple API for doing client-side Google+ OAuth but unfortunately not Parse.
+- Lacks capability to change/edit Coin Stack items.
+- Lacks a strong database of coin types to properly display different coin types and its related attributes (% au, weight, etc)
+- Lacked a reliable source to get current metal bid/ask prices.
+  - Best data set had a monthly update in Quandl.
+- Application will not fail gracefully.
+- Parse lacked easy implementation for social login functionalities other than facebook.
+- Logging out from facebook before logging out from our app invalidates the session and requires manual logout
+- Application was not developed to scale.
+- Data precision is lacking. The shown +/- percentages are based on a monthly comparison.
+- Graph lacks much functionality. Cannot analyze on a daily/hourly basis or change the range of months.
 
 ## <a name="validation">Validation</a> [&#8593;](#toc)
 
