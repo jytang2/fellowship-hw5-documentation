@@ -21,12 +21,16 @@
 - Tracks bullion value in total and for all metals individually.
 
 #### Adding and Deleting Stack Items
-- Set custom image
+- When adding a new stack item, click on placeholder coin image to upload a custom picture of that coin.
 
 #### Settings
 - Change account settings: name, username, email.
 - Change account password.
 - Change theme between dark and light.
+
+#### User Authentication
+- Facebook login available from [here](http://thefellowship.parseapp.com)
+- Canonical authentication via username and password available.
 
 ## <a name="pages">Pages</a> [&#8593;](#toc)
 - ``index.html``: 
