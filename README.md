@@ -1,20 +1,18 @@
 # The Fellowship - CSE134B HW5
 
 ## Preface
-Let us preface this by remarking on the inexperience of our group members in web development coming into this course. For most if not all of us, this is our first brush with client-side web technologies.
+Let us preface this by remarking on the inexperience, coming into this course, of our group members in web development. For most if not all of us, this is our first brush with client-side web technologies. Therefore, it is with great effort and many hours of rolling around in the depths and extents of thick tomes of documentation that we fit together this web app.
 
-The spec of this assignment notes that for our documentation: "The form of this effort likely should be more than just a README.md file”. Surely, however, a well-formatted markdown file with a table of contents suffices.
+## More Notes
+* Production version of the app is in the ``dist/public`` directory.
+* Our app should be tested from this [link](http://thefellowship.parseapp.com) in order for facebook login to work (clear cache if still getting behaviour from HW4). This is just the hosted static files of the production version of the app.
+* The spec of this assignment notes that for our documentation: "[t]he form of this effort likely should be more than just a README.md file”. Surely, however, a well-formatted markdown file with a table of contents suffices.
 
 ## <a name="toc">Table of Contents</a>
 * [Application Functionality](#app-func)
-    * [Market Prices](#app-market)
-    * [User Stack Tracking](#app-stack)
-    * [Adding and Deleting Stack Items](#app-add)
-    * [Settings](#app-settings)
-    * [User Authentication](#app-user-auth)
 * [Pages](#pages)
 * [Development](#development)
-    * [Development Bugs](#development-bugs)
+    * [Obstacles and Lessons Learned](#dev-obstacles)
 * [Deployment](#deployment)
 * [Technologies](#technologies)
 * [Issues/Concerns](#issues)
@@ -22,45 +20,44 @@ The spec of this assignment notes that for our documentation: "The form of this 
 * [Browser Compatibility](#compatibility)
 
 ## <a name="app-func">Application Functionality</a> [&#8593;](#toc)
-#### <a name="app-market">Market Prices</a> [&#8593;](#toc)
-* Tracks prices (ask and bid) of each metal and charts their change over time.
-
-#### <a name="app-stack">User Stack Tracking</a> [&#8593;](#toc)
-* Tracks bullion value in total and for all metals individually.
-
-#### <a name="app-add">Adding and Deleting Stack Items</a> [&#8593;](#toc)
-* When adding a new stack item, click on placeholder coin image to upload a custom picture of that coin.
-* Adding a coin can be done via the plus icon the specific metal page
-* Deleting a coin can be done via the item detail page of the coin
-
-#### <a name="app-settings">Settings</a> [&#8593;](#toc)
-* Change account settings: name, username, email.
-* Change account password.
-* Change theme between dark and light.
-
-#### <a name="app-user-auth">User Authentication</a> [&#8593;](#toc)
-* Facebook login available from [here](http://thefellowship.parseapp.com)
-* Canonical authentication via username and password available.
+* Market Prices
+  * Tracks prices (ask and bid) of each metal and charts their change over time.
+* User Stack Tracking
+  * Tracks bullion value in total and for all metals individually.
+* Adding and Deleting Stack Items
+  * When adding a new stack item, click on placeholder coin image to upload a custom picture of that coin.
+  * Adding a coin can be done via the plus icon the specific metal page
+  * Deleting a coin can be done via the item detail page of the coin
+* Settings
+  * Change account settings: name, username, email.
+  * Change account password.
+  * Change theme between dark and light.
+* User Authentication
+  * Facebook login available through [here](http://thefellowship.parseapp.com)
+  * Canonical authentication via username and password available.
+  * Usernames must be unique.
 
 ## <a name="pages">Pages</a> [&#8593;](#toc)
-* ``index.html``:
-* ``signup.html``:
-* ``login.html``:
-* ``home.html``:
-* ``mymetal.html``:
-* ``addnewitem.html``:
-* ``itemdetail.html``:
+* ``index.html``: main page from which to login with an existing account or sign up.
+* ``signup.html``: page on which the user either creates an account or uses Facebook to authenticate.
+* ``login.html``: page on which the user either logs in with an existing account or authenticates via Facebook.
+* ``home.html``: homescreen of the application, with information on the user’s total stack value as well as market prices and changes. Both types of information are plotted on the graph.
+* ``mymetal.html``: page that displays metal-specific information: user’s stack value, market prices, graph, and list of that metal in the user’s stack
+* ``addnewitem.html``: page to create a new stack item, for which a new type can be made and associated with the item
+* ``itemdetail.html``: page to view the selected stack item and provides an option to delete said item.
+* ``settings.html``: can change user information, password, and app theme here
 
 ## <a name="development">Development</a> [&#8593;](#toc)
 * Our development philosophy is to tackle the primary functionalities first rather than completing features which may be bundled with a functionality
 * The primary functionalities we identified were: 
-* Create, Retrieve, Update, Delete (CRUD) operations for a user
-* Coin or stack maintenance for a user’s coin collection
-* User accounts with username/login authentication
-* Graphical display (chart) of user’s and market’s metal history
+  * Create, Retrieve, Update, Delete (CRUD) operations for a user
+  * Coin or stack maintenance for a user’s coin collection
+  * User accounts with username/login authentication
+  * Graphical display (chart) of user’s and market’s metal history
 * Initially all functions were kept inside a common file, main.js
 * Effort was made to break out individual functions into their separate .js files as to avoid linking more than necessary javascript
-* The libraries that we decided to use are Chart.js, jquery, parse, quandl,velocity
+* Files are bundled based on their technology. The HTML files are located within the root directory of our project, the javascript files are placed in the ./js directory and the stylesheets are placed in the ./sass and ./style directories
+* The libraries that we decided to use are Chart.js, jQuery, Parse, quandl,velocity
 * The primary javascript files that were developed were: graph.js coin_list.js, item_detail.js, main.js, metal_info.js, parse-stackitem.js, 
 * graph.js generates the chart that is displayed in the home.html, and mymetal.html
 * graph.js gathers data of the user’s current coin stack and displays these values
@@ -71,25 +68,29 @@ The spec of this assignment notes that for our documentation: "The form of this 
 * parse-stackitem.js contains functions that will perform the transactions between our web app and the parse backend. 
 * main.js acts as the controller of our application. It contains setup functions which will set-up our webpage such as navigation bars and transaction functions such as when a user saves a coin to the stack. 
 
-#### <a name="development-bugs">Development Bugs</a> [&#8593;](#toc)
-* 
-
+#### <a name="dev-obstacles">Obstacles and Lessons Learned</a> [&#8593;](#toc)
+* Main debugging technique was to use the javascript console on the browser
+* Parse object queries sometimes required the ``include()`` function to encompass a specific property. ``object.query.include(“type”)`` was needed to pull the specific coin’s type from parse backend
+* Functions which makes transactions between parse backend and our web app such as ``deleteStackItem()`` are designed to be asynchronous, there were times when our web app errored out even when the transaction was successful
+* Must only delete a coin that the user has in inventory, and not a “null” coin. 
+* Production version of the app did not work at one point. This was because of unforeseen JS interdependencies, the order of which mattered (e.g. parse.js had to be included before using the Parse object).
+* Dealing with callback functions were difficult. Time constraints prevented us from developing a proper style to handle callbacks as situations arose with multi-chained callbacks.
+* Timestamps and dates are horrible! Keeping consistency between months, days and the proper indexing for arrays is incredibly difficult without a consistent standard. Proper design and structure would have made this easier.
+* Design, Design, Design!
 
 
 ## <a name="deployment">Deployment</a> [&#8593;](#toc)
 * ``dist`` directory for production version of the app.
-* Gulp as task runner to minify and concatenate JS and CSS files. This is detailed inside of the ``gulpfile.js`` file in the root directory. We first minify all of our css files, but do not concatenate them because theme switching is dependent on there being separate CSS files. We then minify all of our Javascript files and concatenate them into a single file, and place this file inside of the ``dist`` directory. Using ``gulp-useref``, Javascript import elements are collapsed to reference the concatenated ``all.js``. Finally all the assets and fonts are copied over to the ``dist`` directory.
+* Gulp as task runner to minify and concatenate JS and CSS files. This is detailed inside of the ``gulpfile.js`` file in the root directory. Running the main task ``gulp all``: we first minify all of our css files, but do not concatenate them because theme switching is dependent on there being separate CSS files. We then minify all of our Javascript files and concatenate them into a single file, and place this file inside of the ``dist/public`` directory. Using ``gulp-useref``, Javascript import elements are collapsed to reference the concatenated ``all.js``. Finally all the assets and fonts are copied over to the ``dist/public`` directory.
 * These static files constitute the ``public`` directory to host on Parse. Then we simply need to run ``parse deploy`` in the ``dist`` directory to host the static files.
-* Unfortunately, some of the Javascript code to login/signup in the production version of the app is not properly being called.
 
 ## <a name="technologies">Technologies</a> [&#8593;](#toc)
-* ADD RATIONALES AND FUNCTION
 * Gulp: Gulp and Grunt were the two task runners that we surveyed for our application. In the end, we decided to use Gulp instead of Grunt as our team had more experience with Gulp from prior projects and Gulp was much easier to configure.
-* Sass
-* Parse: used as backend and user account management.
-* ChartJS
+* Sass: Syntactically awesome stylesheets, simple and easy css extensions along with compatibility with the css libraries we were already familiarizing ourselves with
+* Parse: Stores the user login information and the coins in a user’s collection. Allows for Facebook authentication but does not support easy connection with Google+ OAuth. Upon researching Firebase we discovered that it had a simple API for doing Google+ OAuth. Unfortunately, we already implemented our login and coin storage system using Parse. With the deadline approaching, we decided to keep using Parse because we did not want to risk not finishing the project. 
+* Chart.js
 * jQuery
-* Quandl PERTH dataset used to provide metal bid/ask prices.
+* Quandl PERTH and WSJ datasets used to provide metal bid/ask prices.
 
 ## <a name="issues">Issues/Concerns</a> [&#8593;](#toc)
 * Google+ OAuth client-side Parse is not easy. Firebase came with simple API for doing client-side Google+ OAuth but unfortunately not Parse.
@@ -97,17 +98,19 @@ The spec of this assignment notes that for our documentation: "The form of this 
 * Lacks a strong database of coin types to properly display different coin types and its related attributes (% au, weight, etc)
 * Lacked a reliable source to get current metal bid/ask prices.
   * Best data set had a monthly update in Quandl.
-* Application will not fail gracefully.
-* Parse lacks client-side implementation for social login functionalities other than facebook.
-* Logging out from facebook before logging out from our app invalidates the session and requires manual logout
+* Application will not fail gracefully.<-should we list which cases this happens?
+* Parse lacks client-side implementation for social login functionalities other than Facebook.
+* Logging out from Facebook before logging out from our app invalidates the session and requires manual logout
 * Application was not developed to scale.
 * Data precision is lacking. The shown +/- percentages are based on a monthly comparison.
-* Graph lacks much functionality. Cannot analyze on a daily/hourly basis or change the range of months.
-* Must only delete a coin that the user has in inventory, and not a “null” coin 
+* Graph lacks functionality. Cannot analyze on a daily/hourly basis or change the range of months.
+* Graph displays negative values for the prices
+* Graph is not intelligent. It is only able to fill holes in provided data from datasets from previous values. If a previous value does not exist, it inputs an undefined.
+* Graph responsiveness is slow, although we may toggle back and forth between by-month or by-day displays, the render of the graph took a performance hit for this feature
 
 ## <a name="validation">Validation</a> [&#8593;](#toc)
 * The HTML all validates. Previously we had error because of empty table rows ``<tr>`` elements. This was fixed by removing the row entirely and deferring the task to the JS.
-* For CSS, the lingering code from DreamTeam’s submission had validation errors mostly with the property ``fill``, but after extensive testing with different browsers: it seems to work properly.
+* For CSS, the lingering code from DreamTeam’s submission had validation errors mostly with the property ``fill``, but after extensive testing with different browsers: it seems to behave properly.
 
 ## <a name="compatibility">Browser Compatibility</a> [&#8593;](#toc)
 * Had an issue using the ``<dialog>`` HTML element when adding a new type on ``addnewitem.html``: non-Chromium browsers would always show it despite the fact that there was no open attribute. We fixed this by changing it to just a toggling div.
