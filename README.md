@@ -20,26 +20,30 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * [Browser Compatibility](#compatibility)
 
 ## <a name="app-func">Application Functionality</a> [&#8593;](#toc)
-* Market Prices
-  * Tracks prices (ask and bid) of each metal and charts their change over time.
-  * These prices are pulled from Quandl PERTH dataset, which updates only monthly.
-* User Stack Tracking
-  * Tracks bullion value in total and for all metals individually.
-  * The tracking is based upon the *current time* at which the stack items were added or deleted from the system, not according to the items’ *purchase dates*. This was done to avoid the confusing interaction of adding in the item with a **purchase date** of a particular month/day and deleting the same item in a different month/day. In this situation, it is ambiguous whether such a deletion should affect the stack total of the purchase date or of the current date. Therefore, we settled on the user’s total values changing based on the time at which they added/deleted items.
-* Adding and Deleting Stack Items
-  * When adding a new stack item, click on placeholder coin image to upload a custom picture of that coin.
-  * Adding a coin can be done via the plus icon the specific metal page
-  * Deleting a coin can be done via the item detail page of the coin
-  * Add a new type of coin by selecting the appropriate item in the dropdown for Type. Input fields should display to be filled out accordingly.
-* Settings
-  * Accessible via the cog icon in the top nav bar.
-  * Change account settings: name, username, email.
-  * Change account password.
-  * Change theme between dark and light.
-* User Authentication
-  * Facebook login available through [here](http://thefellowship.parseapp.com)
-  * Canonical authentication via username and password available.
-  * Usernames must be unique.
+#### Market Prices
+* Tracks prices (ask and bid) of each metal and charts their change over time.
+* These prices are pulled from Quandl PERTH dataset, which updates only monthly.
+
+#### User Stack Tracking
+* Tracks bullion value in total and for all metals individually.
+* The tracking is based upon the *current time* at which the stack items were added or deleted from the system, not according to the items’ *purchase dates*. This was done to avoid the confusing interaction of adding in the item with a **purchase date** of a particular month/day and deleting the same item in a different month/day. In this situation, it is ambiguous whether such a deletion should affect the stack total of the purchase date or of the current date. Therefore, we settled on the user’s total values changing based on the time at which they added/deleted items.
+
+#### Adding and Deleting Stack Items
+* When adding a new stack item, click on placeholder coin image to upload a custom picture of that coin.
+* Adding a coin can be done via the plus icon the specific metal page
+* Deleting a coin can be done via the item detail page of the coin
+* Add a new type of coin by selecting the appropriate item in the dropdown for Type. Input fields should display to be filled out accordingly.
+
+#### Settings
+* Accessible via the cog icon in the top nav bar.
+* Change account settings: name, username, email.
+* Change account password.
+* Change theme between dark and light.
+
+#### User Authentication
+* Facebook login available through [here](http://thefellowship.parseapp.com)
+* Canonical authentication via username and password available.
+* Usernames must be unique.
 
 ## <a name="pages">Pages</a> [&#8593;](#toc)
 * ``index.html``: main page from which to login with an existing account or sign up.
@@ -86,6 +90,7 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * ``dist`` directory for production version of the app.
 * Gulp as task runner to minify and concatenate JS and CSS files. This is detailed inside of the ``gulpfile.js`` file in the root directory. Running the main task ``gulp all``: we first minify all of our css files, but do not concatenate them because theme switching is dependent on there being separate CSS files. We then minify all of our Javascript files and concatenate them into a single file, and place this file inside of the ``dist/public`` directory. Using ``gulp-useref``, Javascript import elements are collapsed to reference the concatenated ``all.js``. Finally all the assets and fonts are copied over to the ``dist/public`` directory.
 * These static files constitute the ``public`` directory to host on Parse. Then we simply need to run ``parse deploy`` in the ``dist`` directory to host the static files.
+* The ``gulp validate`` task can be used to validate all of the html. The output validation files are in html format and enumerate out all the warnings, errors, and notes that the W3C validator issues.
 
 ## <a name="technologies">Technologies</a> [&#8593;](#toc)
 * Gulp: Gulp and Grunt were the two task runners that we surveyed for our application. In the end, we decided to use Gulp instead of Grunt as our team had more experience with Gulp from prior projects and Gulp was much easier to configure.
@@ -96,16 +101,16 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * Quandl PERTH and WSJ datasets used to provide metal bid/ask prices.
 
 ## <a name="issues">Issues/Concerns</a> [&#8593;](#toc)
-* Google+ OAuth client-side Parse is not easy. Firebase came with simple API for doing client-side Google+ OAuth but unfortunately not Parse.
-* Lacks capability to change/edit Coin Stack items.
+* Google+ OAuth client-side Parse is not easy. Firebase came with simple API for doing client-side Google+ OAuth but unfortunately not Parse. Having researched extensively, it still seems that the most straightforward way is to use Parse cloud code, but that steps out of the bounds of the client-side nature of this assignment.
+* Lacks capability to change/edit Coin Stack items: although we have an update method available, we did not have the time to create new UI to link it up with.
 * Lacked a reliable source to get current metal bid/ask prices with frequent updates.
-  * Best data set had a monthly update in Quandl.
+  * Best available dataset had a monthly update in Quandl.
 * Application does not fail gracefully in all cases.
 * Parse lacks client-side implementation for social login functionalities other than Facebook.
 * Logging out from Facebook before logging out from our app invalidates the session and requires manual logout
 * Application was not developed to scale.
 * Data precision is lacking. The shown +/- percentages are based on a monthly comparison.
-* Graph lacks functionality. Cannot analyze on a daily/hourly basis or change the range of months.
+* Graph lacks some desired functionality. Cannot analyze on other bases (hourly, yearly, etc.).
 * Graph displays negative values for the prices
 * Graph is not intelligent. It is only able to fill holes in provided data from datasets from previous values. If a previous value does not exist, it inputs an undefined.
 * Graph performance is slow, although we may toggle back and forth between by-month or by-day displays, the render of the graph took a performance hit for this feature. This can be ameliorated with a loading indication to the user.
