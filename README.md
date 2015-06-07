@@ -22,7 +22,8 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 ## <a name="app-func">Application Functionality</a> [&#8593;](#toc)
 #### Market Prices
 * Tracks prices (ask and bid) of each metal.
-* Charts the change over time of 1 troy oz of each metal.
+* Graphs the change over time of 1 troy oz of each metal.
+* Graph can switch between monthly and daily view by clicking on the toggle button labelled "Month" or "Day".
 * Ask and bid prices are pulled from Quandl PERTH dataset, which updates only monthly. Graph prices are pulled from Quandl WSJ dataset.
 * The market prices in the graph and the ask/bid prices on the left of the graph are mismatched because Quandl WSJ data does not give ask/bid price and instead daily 1 troy oz values, while Quandl PERTH data gives ask/bid price but not daily prices.
 
@@ -117,6 +118,7 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * Graph is not intelligent. It is only able to fill holes in provided data from datasets from previous values. If a previous value does not exist, it inputs an undefined.
 * Graph performance is slow, although we may toggle back and forth between by-month or by-day displays, the render of the graph took a performance hit for this feature. This can be ameliorated with a loading indication to the user.
 * Graph is not shown responsively, i.e. resizing the browser window hides the graph until the month/day toggle is clicked on.
+* When on the daily view of the graph, the percentages on the left of the graph go a bit haywire. This is a known bug.
 
 ## <a name="validation">Validation</a> [&#8593;](#toc)
 * The HTML all validates. Previously we had errors because of empty table rows ``<tr>`` elements. This was fixed by removing the row entirely and deferring the task to the JS.
