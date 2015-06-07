@@ -1,7 +1,7 @@
 # The Fellowship - CSE134B HW5
 
 ## Preface
-Let us preface this by remarking on the inexperience, coming into this course, of our group members in web development. For most if not all of us, this is our first brush with client-side web technologies. Therefore, it is with great effort and many hours of rolling around in the depths and extents of thick tomes of documentation that we fit together this web app.
+Let us preface this by remarking on the inexperience, coming into this course, of our group members in web development. For most if not all of us, this is our first brush with client-side web technologies. Therefore, it is with great effort and many hours of wallowing around in the depths and extents of thick tomes of documentation that we fit together this web app.
 
 ## Preliminary Notes
 * The production version of the app is located in the ``dist/public`` directory. Development version is the root directory excluding the ``dist`` directory.
@@ -61,7 +61,7 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * Initially all functions were kept inside a common file, main.js
 * Effort was made to break out individual functions into their separate .js files as to avoid linking more than necessary javascript
 * Files are bundled based on their technology. The HTML files are located within the root directory of our project, the javascript files are placed in the ./js directory and the stylesheets are placed in the ./sass and ./style directories
-* The libraries that we decided to use are Chart.js, jQuery, Parse, quandl,velocity
+* The libraries included in the app are jQuery, Parse, Chart.js, and Velocity.
 * The primary javascript files that were developed were: graph.js coin_list.js, item_detail.js, main.js, metal_info.js, parse-stackitem.js, 
 * graph.js generates the chart that is displayed in the home.html, and mymetal.html
 * graph.js gathers data of the user’s current coin stack and displays these values
@@ -76,12 +76,11 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 * Main debugging technique was to use the javascript console on the browser
 * Parse object queries sometimes required the ``include()`` function to encompass a specific property. ``object.query.include(“type”)`` was needed to pull the specific coin’s type from parse backend
 * Functions which makes transactions between parse backend and our web app such as ``deleteStackItem()`` are designed to be asynchronous, there were times when our web app errored out even when the transaction was successful
-* Must only delete a coin that the user has in inventory, and not a “null” coin. 
+* Must only delete a coin that the user has in inventory, and not a “null” coin.
 * Production version of the app did not work at one point. This was because of unforeseen JS interdependencies, the order of which mattered (e.g. parse.js had to be included before using the Parse object).
 * Dealing with callback functions were difficult. Time constraints prevented us from developing a proper style to handle callbacks as situations arose with multi-chained callbacks.
 * Timestamps and dates are horrible! Keeping consistency between months, days and the proper indexing for arrays is incredibly difficult without a consistent standard. Proper design and structure would have made this easier.
 * Design, Design, Design!
-
 
 ## <a name="deployment">Deployment</a> [&#8593;](#toc)
 * ``dist`` directory for production version of the app.
