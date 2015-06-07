@@ -21,8 +21,10 @@ Let us preface this by remarking on the inexperience, coming into this course, o
 
 ## <a name="app-func">Application Functionality</a> [&#8593;](#toc)
 #### Market Prices
-* Tracks prices (ask and bid) of each metal and charts their change over time.
-* These prices are pulled from Quandl PERTH dataset, which updates only monthly.
+* Tracks prices (ask and bid) of each metal.
+* Charts the change over time of 1 troy oz of each metal.
+* Ask and bid prices are pulled from Quandl PERTH dataset, which updates only monthly. Graph prices are pulled from Quandl WSJ dataset.
+* The market prices in the graph and the ask/bid prices on the left of the graph are mismatched because Quandl WSJ data does not give ask/bid price and instead daily 1 troy oz values, while Quandl PERTH data gives ask/bid price but not daily prices.
 
 #### User Stack Tracking
 * Tracks bullion value in total and for all metals individually.
